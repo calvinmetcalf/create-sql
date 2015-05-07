@@ -1,5 +1,5 @@
 { "name": "create-sql",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "SQL Generator",
   "keywords" : ["sql", "database", "rdbms"],
   "homepage": "https://github.com/calvinmetcalf/create-sql",
