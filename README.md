@@ -1,17 +1,17 @@
-#node-sql-generator
+# create-sql
 
-SQL Generator for node.js.
+SQL Generator for node.js, fork of [this package](https://github.com/Shanon/node-sql-generator)
 
 ## Installation
 
-    npm install sql-generator
+    npm install create-sql
 
 ## Examples
 
 ### INSERT
 
-    var SqlGenerator = require('sql-generator');
-    var sqlgen = new SqlGenerator();
+```js
+    var sqlgen = require('create-sql');
     var stmt = sqlgen.insert( 'test_table', // target table
                               { foo: 1, bar: 'text', buz: '2011-10-10',
                                 ary_txt: [ 'a', 'b' ], ary_num: [ 1, 2 ] } // insert datas
@@ -20,18 +20,11 @@ SQL Generator for node.js.
     // stmt = { sql: 'INSERT INTO test_table ( foo, bar, buz ) VALUES ( $1, $2, $3, ARRAY[ $4, $5 ], $6 )',
                 values: [ 1, 'text', '2011-10-10', 'a', 'a' ], '{1,2}' };
 
-    // or callback pattern
-    // sqlgen.insert( 'table_name',
-    //                { datas .... },
-    //                function( sql, values ) {
-    //                    ..
-    //                    ..
-    //                } );
-                
+```
 ### SELECT
 
-    var SqlGenerator = require('sql-generator');
-    var sqlgen = new SqlGenerator();
+```js
+    var sqlgen = require('create-sql');
     var stmt = sqlgen.select( 'base_table', // target table
                               [ 'id' ], // target columns
                               { id: { '>=': 33 } } // where section
@@ -40,14 +33,7 @@ SQL Generator for node.js.
     // stmt = { sql: 'SELECT id FROM base_table WHERE id >= $1',
     //          values: [ 33 ] };
 
-    // or callback pattern
-    // sqlgen.select( 'table_name', ['col',....], { wheres..... }, { options.... },
-    //                function( sql, values ) {
-    //                    ..
-    //                    ..
-    //                    ..
-    //                } );
-    
+
     var stmt2 = sqlgen.select( 'test_table', // target table
                                '*',          // target columns
                                { foo: 1,                                         // foo = 1
@@ -86,11 +72,10 @@ SQL Generator for node.js.
     //                          AND ($5 != ALL(num_ary2) OR $6 != ALL(num_ary2)) \
     //                          AND (SELECT id FROM base_table WHERE id >= $7) = ANY(num_ary3) ORDER BY id',
     //              values: [ 'hoge', 'fuga', 1, 2, 1, 2, 33 ] }
-
+```
 ### UPDATE
-
-    var SqlGenerator = require('sql-generator');
-    var sqlgen = new SqlGenerator();
+```js
+    var sqlgen = require('create-sql');
     var stmt = sqlgen.update( 'test_table', // target table
                               { id: 10 }, // where section
                               { foo: 20, bar: 30, buz: 40,
@@ -99,7 +84,7 @@ SQL Generator for node.js.
     // it return this
     // stmt = { sql: 'UPDATE test_table SET foo = $1, bar = $2, buz = $3, ary_num = $4, ary_txt = ARRAY[ $5, %6 ] WHERE id = $7',
                 values: [ 20, 30, 40, '{1,2}', 'a', 'b', 10 ] };
-    
+
     // or callback pattern
     // sqlgen.update( 'table_name', { wheres..... }, { datas..... },
     //                function( sql, values ) {
@@ -107,11 +92,10 @@ SQL Generator for node.js.
     //                    ..
     //                    ..
     //                } );
-
+```
 ### DELETE
-
-    var SqlGenerator = require('sql-generator');
-    var sqlgen = new SqlGenerator();
+```js
+    var sqlgen = require('create-sql');
     var stmt = sqlgen.delete( 'test_table', // target table
                               { some_flag: 1 } // where section
                             );
@@ -119,34 +103,6 @@ SQL Generator for node.js.
     // stmt = { sql: 'DELETE FROM test_table WHERE some_flag = $1',
                 values: [ 1 ] };
 
-    // or callback pattern
-    // sqlgen.delete( 'table_name', { wheres..... },
-    //                function( sql, values ) {
-    //                    ..
-    //                    ..
-    //                    ..
-    //                } );
-
 ## License
 
-The MIT License
-
-Copyright (c) 2011 Shota Takayama. Shanon, Inc. &lt;takayama[at]shanon.co.jp&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+[The MIT License](license.md)

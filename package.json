@@ -1,19 +1,23 @@
-{ "name": "sql-generator",
+{ "name": "create-sql",
   "version": "0.0.6",
   "description": "SQL Generator",
   "keywords" : ["sql", "database", "rdbms"],
-  "homepage": "https://github.com/Shanon/node-sql-generator",
+  "homepage": "https://github.com/calvinmetcalf/create-sql",
   "repository" : {
     "type" : "git",
-    "url" : "git://github.com/Shanon/node-sql-generator.git"
+    "url" : "git://github.com/calvinmetcalf/create-sql.git"
   },
   "scripts" : {
       "test": "nodeunit test"
   },
-  "author" : "Shota Takayama <takayama@shanon.co.jp>",
+  "contributors": [
+    "Calvin Metcalf <calvin.metcalf@gmail.com>",
+    "Shota Takayama <takayama@shanon.co.jp>"
+  ],
   "main" : "./lib",
   "engines" : { "node": ">= 0.4.11" },
   "devDependencies" : {
       "nodeunit": "*"
-  }
+  },
+  "license": "MIT",
 }
